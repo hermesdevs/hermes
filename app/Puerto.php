@@ -22,7 +22,7 @@ class Puerto extends Model
 		return $this->belongsToMany('App\Servidor');
 	}
 
-	function switch(){
+	function switche(){
 		return $this->belongsToMany('App\Switch');
 	}
 

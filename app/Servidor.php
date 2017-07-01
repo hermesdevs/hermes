@@ -23,4 +23,8 @@ class Servidor extends Model
 		return $this->belongsToMany('App\Puerto');
 	}
 
+	function rango(){
+		return $this->belongsToMany('App\Rango');
+	}
+
 }

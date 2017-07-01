@@ -27,7 +27,7 @@ class Equipo extends Model
 		return $this->belongsTo('App\Servidor');
 	}
 
-	function switch(){
+	function switche(){
 		return $this->belongsToMany('App\Switch');
 	}
 

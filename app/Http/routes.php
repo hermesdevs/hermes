@@ -87,9 +87,7 @@ $app->delete('/puertos/{id}', 'PuertoController@destroy');
 //====================================
 $app->get('/usuarios', 'UserController@index');
 $app->get('/usuarios/{id}', 'UserController@show');
-
 $app->post('/usuarios', 'UserController@create');
-
 $app->put('/usuarios/{id}', 'UserController@update');
 $app->patch('/usuarios/{id}', 'UserController@update');
 $app->delete('/usuarios/{id}', 'UserController@destroy');
@@ -107,12 +105,24 @@ $app->delete('/rangos/{id}', 'RangoController@destroy');
 
 
 
+
 //===============================================
 //===============================================
 // Rutas Anidadas
 //===============================================
 //===============================================
 
+
+
+
+//===============================================
+// Equipos - Puertos
+//===============================================
+$app->get('/equipos/{equipo_id}/puertos/', 'ServidorPuertoController@index');
+$app->post('/equipos/{equipo_id}/puertos/{puerto_id}', 'ServidorPuertoController@create');
+$app->put('/equipos/{equipo_id}/puertos/{puerto_id}', 'ServidorPuertoController@update');
+$app->patch('/equipos/{equipo_id}/puertos/{puerto_id}', 'ServidorPuertoController@update');
+$app->delete('/equipos/{equipo_id}/puertos/{puerto_id}', 'ServidorPuertoController@destroy');
 
 
 //===============================================
@@ -124,11 +134,19 @@ $app->put('/servidores/{servidor_id}/puertos/{puerto_id}', 'ServidorPuertoContro
 $app->patch('/servidores/{servidor_id}/puertos/{puerto_id}', 'ServidorPuertoController@update');
 $app->delete('/servidores/{servidor_id}/puertos/{puerto_id}', 'ServidorPuertoController@destroy');
 
-// $app->get('/servidores/{id}', 'ServidorController@show');
-// $app->post('/servidores', 'ServidorController@create');
-// $app->put('/servidores/{id}', 'ServidorController@update');
-// $app->patch('/servidores/{id}', 'ServidorController@update');
-// $app->delete('/servidores/{id}', 'ServidorController@destroy');
+
+
+
+//===============================================
+// Equipos - Puertos
+//===============================================
+$app->get('/switches/{sw_id}/puertos/', 'ServidorPuertoController@index');
+$app->post('/switches/{sw_id}/puertos/{puerto_id}', 'ServidorPuertoController@create');
+$app->put('/switches/{sw_id}/puertos/{puerto_id}', 'ServidorPuertoController@update');
+$app->patch('/switches/{sw_id}/puertos/{puerto_id}', 'ServidorPuertoController@update');
+$app->delete('/switches/{sw_id}/puertos/{puerto_id}', 'ServidorPuertoController@destroy');
+
+
 
 
 
@@ -138,9 +156,25 @@ $app->delete('/servidores/{servidor_id}/puertos/{puerto_id}', 'ServidorPuertoCon
 //===============================================
 //===============================================
 
+$app->get('/servidores/puertos/', 'AllController@Servidores_Puertos');
+$app->get('/servidores/rangos/', 'AllController@Servidores_Rangos');
 
+$app->get('/switches/puertos/', 'AllController@Switches_Puertos');
+$app->get('/switches/equipos/', 'AllController@Switches_Equipos');
+$app->get('/switches/rangos/', 'AllController@Switches_Rangos');
 
-//===============================================
-// Servidores - Puertos
-//===============================================
-$app->get('/servidores/puertos/', 'ServidorPuertoController@allServidoresWithPuertos');
+$app->get('/equipos/puertos/', 'AllController@Equipos_Puertos');
+$app->get('/equipos/switches/', 'AllController@Equipos_Switches');
+$app->get('/equipos/rangos/', 'AllController@Equipos_Rangos');
+$app->get('/equipos/usuarios/', 'AllController@Equipos_Usuarios');
+
+$app->get('/rangos/equipos/', 'AllController@Rangos_Equipos');
+$app->get('/rangos/servidores/', 'AllController@Rangos_Servidores');
+$app->get('/rangos/swtiches/', 'AllController@Rangos_Switches');
+
+$app->get('/usuarios/equipos/', 'AllController@Usuarios_Equipos');
+
+$app->get('/puertos/equipos/', 'AllController@Puertos_Equipos');
+$app->get('/puertos/servidores/', 'AllController@Puertos_Servidores');
+$app->get('/puertos/switches/', 'AllController@Puertos_Switches');
+$app->get('/puertos/vlans/', 'AllController@Puertos_Vlans');

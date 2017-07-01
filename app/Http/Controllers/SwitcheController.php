@@ -21,7 +21,6 @@ class SwitcheController extends Controller
         $sw = Switche::Find($id);
 
         if ($sw) {
-            # code...
             return $this->Respuesta($sw, 200);
         }
         return $this->RespuestaError("No encontre el switche que buscas", 404);
