@@ -75,8 +75,16 @@ class EquipoController extends Controller
     
     public function destroy($id){
         $e = Equipo::Find($id);
-        $e->delete();
-        return $this->Respuesta("El equipo $id se elimino", 201);
+        if (condition) {
+            # code...
+            $e->puerto()->sync([]);
+            $e->user()->sync([]);
+            $e->switche()->sync([]);
+            $e->rango()->sync([]);
+            $e->delete();
+            return $this->Respuesta("El equipo $id se elimino", 201);
+        }        
+        return $this->RespuestaError("Ya el equipo $sw fue eliminado , no existe", 404);
     }
 
 }

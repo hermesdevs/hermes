@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
-{
-	use AuthenticatableContract , AuthorizableContract;
+// class User extends Model implements AuthenticatableContract, AuthorizableContract
+// {
+
+class User extends Model {
+	// use AuthenticatableContract , AuthorizableContract;
 	    
     protected $fillable = ['name', 'profileImage', 'token', 'date', 'mail', 'phone', 'super_permission'];
 

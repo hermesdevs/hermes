@@ -22,12 +22,12 @@ class Switche extends Model
 		return $this->belongsToMany('App\Puerto');
 	}
 
-	function vlan(){
-		return $this->belongsToMany('App\Vlan');
-	}
+	// function vlan(){
+	// 	return $this->belongsToMany('App\Vlan');
+	// }
 
 	function rango(){
-		return $this->belongsToMany('App\Rango','rango_id');
+		return $this->belongsToMany('App\Rango');
 	}
 
 }

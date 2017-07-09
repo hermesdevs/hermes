@@ -28,7 +28,7 @@ class Equipo extends Model
 	}
 
 	function switche(){
-		return $this->belongsToMany('App\Switch');
+		return $this->belongsToMany('App\Switche');
 	}
 
 	function vlan(){
@@ -38,4 +38,5 @@ class Equipo extends Model
 	function rango(){
 		return $this->belongsToMany('App\Rango');
 	}
+
 }

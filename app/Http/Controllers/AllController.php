@@ -8,78 +8,76 @@ use App\Switche;
 use App\Equipo;
 use App\Rango;
 use App\User;
-use Illuminate\Http\Request;
 
 class AllController extends Controller
 {
 
-    public function Servidores_Puertos(Request $request){
+    public function ServidoresPuertos(){
         return Servidor::with('puerto')->get();    
     }
 
-    public function Servidores_Rangos(Request $request){
+    public function ServidoresRangos(){
         return Servidor::with('rango')->get();    
     }
 
-    public function Switches_Puertos(Request $request){
+    public function SwitchesPuertos(){
         return Switche::with('puerto')->get();    
     }
 
-    public function Switches_Equipos(Request $request){
+    public function SwitchesEquipos(){
         return Switche::with('equipo')->get();    
     }
 
-    public function Switches_Rangos(Request $request){
+    public function SwitchesRangos(){
         return Switche::with('rango')->get();    
     }
 
-    public function Equipos_Puertos(Request $request){
+    public function EquiposPuertos(){
         return Equipo::with('puerto')->get();    
     }
 
-    public function Equipos_Switches(Request $request){
+    public function EquiposSwitches(){
         return Equipo::with('switche')->get();    
     }
 
-    public function Equipos_Rangos(Request $request){
+    public function EquiposRangos(){
         return Equipo::with('rango')->get();    
     }
 
-    public function Equipos_Usuarios(Request $request){
+    public function EquiposUsuarios(){
         return Equipo::with('user')->get();    
     }
 
-    public function Rangos_Equipos(Request $request){
+    public function RangosEquipos(){
         return Rango::with('equipo')->get();    
     }
 
-    public function Rangos_Servidores(Request $request){
+    public function RangosServidores(){
         return Rango::with('servidor')->get();    
     }
 
-    public function Rangos_Switches(Request $request){
+    public function RangosSwitches(){
         return Rango::with('switche')->get();    
     }
 
-    public function Usuarios_Equipos(Request $request){
+    public function UsuariosEquipos(){
         return User::with('equipo')->get();    
     }
 
-    public function Puertos_Equipos(Request $request){
+    public function PuertosEquipos(){
         return Puerto::with('equipo')->get();    
     }
 
-    public function Puertos_Servidores(Request $request){
+    public function PuertosServidores(){
         return Puerto::with('servidor')->get();    
     }
 
-    public function Puertos_Switches(Request $request){
+    public function PuertosSwitches(){
         return Puerto::with('switche')->get();    
     }
 
-    public function Puertos_Vlans(Request $request){
+    public function PuertosVlans(){
         return Puerto::with('vlan')->get();    
     }
-
 
 }

@@ -1,28 +1,26 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Servidor;
 use App\Puerto;
+use App\Servidor;
 use Illuminate\Http\Request;
 
-class ServidorPuertoController extends Controller
-{
+class PuertoServidorController extends Controller{
 
-    public function index($servidor_id){
-        $servidor = Servidor::Find($servidor_id);
+    public function index($id){
+        $servidor = Servidor::find($id);
         if($servidor){
             $puerto = $servidor->puerto;
             return $this->Respuesta($puerto, 200);
         }
-        return $this->RespuestaError("Este servidor no esta conectado a ningun puerto", 404);
-    }    
+        return $this->RespuestaError("El servidor $id no existe", 404);
+    }
 
-    public function create(Request $request, $servidor_id, $puerto_id){
+    public function create($puerto_id, $servidor_id){
         $servidor = Servidor::Find($servidor_id);
-        if ($servidor) {            
-            $puerto = Puerto::Find($puerto_id);
-            if($puerto){
+        if($servidor){
+            $p = Puerto::Find($puerto_id);
+            if($p){
                 $puertos = $servidor->puerto();
                 if ($puertos->find($puerto_id)) {
                     return $this->Respuesta("EL puerto $puerto_id ya fue asignado al servidor $servidor_id",409);
@@ -35,7 +33,7 @@ class ServidorPuertoController extends Controller
         return $this->RespuestaError("EL servidor $servidor_id no existe ", 404);
     }
 
-    public function update(Request $request, $servidor_id, $puerto_id){
+    public function update(Request $request, $servidor_id , $puerto_id){
         $servidor = Servidor::Find($servidor_id);
         if ($servidor) {   
             $puerto = Puerto::Find($puerto_id);
@@ -56,24 +54,20 @@ class ServidorPuertoController extends Controller
                 return $this->Respuesta('El puerto fue actualizado', 201);
             }
         }
-        return $this->RespuestaError("EL servidor $servidor_id no existe ", 404);
+        return $this->RespuestaError("EL equipo $equipo_id no existe ", 404);
     }
 
-    public function destroy(Request $request, $servidor_id, $puerto_id){
+    public function destroy($puerto_id , $servidor_id){    
         $servidor = Servidor::Find($servidor_id);
         if($servidor){
             $puertos = $servidor->puerto();
             if ($puertos->find($puerto_id)){
                 $puertos->detach($puerto_id);
-                return $this->Respuesta("El servidor $puerto_id se elimino del puerto $servidor_id",200);
+                return $this->Respuesta("El puerto $puerto_id se elimino del servidor $servidor_id",200);
             }
             return $this->RespuestaError("No se encontro el puerto",404);
         }
-        return $this->RespuestaError("No se encontror el servidor",404);      
-    }
-
-    public function allServidoresWithPuertos(Request $request){
-        return Servidor::with('puerto')->get();    
+        return $this->RespuestaError("No se encontror el servidor",404);
     }
 
 }
