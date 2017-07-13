@@ -13,10 +13,13 @@ class SwitchePuertoController extends Controller
     public function index($id){
         $switche = Switche::find($id);
         if($switche){
-            $puerto = $switche->puerto;
-            return response()->json(['data'=>$puerto],200);
+            $puertos = $switche->puerto;
+            if(count($puertos)==0) {
+                return $this->RespuestaError("EL switche $id no tiene puertos asignados",404);
+            }
+            return $this->Respuesta($puertos, 200);    
         }
-        return "la cagaste nojoda";
+        return $this->RespuestaError("EL switche $id no existe",404);
     }
     
     public function create($puerto_id , $switche_id){
