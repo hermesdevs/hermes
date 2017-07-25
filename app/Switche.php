@@ -14,6 +14,7 @@ class Switche extends Model
 	protected $hidden = ['created_at','updated_at'];
 	protected $table = 'switches';
 
+
 	function equipo(){
 		return $this->belongsToMany('App\Equipo');
 	}
@@ -21,10 +22,6 @@ class Switche extends Model
 	function puerto(){
 		return $this->belongsToMany('App\Puerto');
 	}
-
-	// function vlan(){
-	// 	return $this->belongsToMany('App\Vlan');
-	// }
 
 	function rango(){
 		return $this->belongsToMany('App\Rango');

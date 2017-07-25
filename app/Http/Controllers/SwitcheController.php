@@ -10,12 +10,19 @@ class SwitcheController extends Controller
 
     public function index()
     {
-        $switche = Switche::all();
-        return response()->json(['data'=>$switche],200);
+        $sw = Switche::all();
+        if($sw){
+            return $this->Respuesta($sw, 200);                
+        }
+        return $this->RespuestaError("No hay switches", 404 );
     }
     
     public function show($id){
-        return Switche::Find($id);
+        $sw = Switche::Find($id);
+        if ($sw) {
+            return $this->Respuesta($sw, 200);
+        }
+        return $this->RespuestaError("EL switche $id no existe", 404 );
     }
 
     public function create(Request $request){

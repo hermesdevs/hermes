@@ -20,7 +20,6 @@ class PuertoEquipoController extends Controller
         return $this->RespuestaError("El puerto $puerto_id no existe", 404);
     }
 
-
     public function create($equipo_id , $puerto_id){
         $equipo = Equipo::Find($equipo_id);
         if($equipo){

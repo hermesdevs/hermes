@@ -12,8 +12,8 @@ class ServidorPuertoController extends Controller
     public function index($servidor_id){
         $servidor = Servidor::Find($servidor_id);
         if($servidor){
-            $puerto = $servidor->puerto;
-            return $this->Respuesta($puerto, 200);
+            $puertos = $servidor->puerto;
+            return $this->Respuesta($puertos, 200);
         }
         return $this->RespuestaError("Este servidor no esta conectado a ningun puerto", 404);
     }    

@@ -28,19 +28,18 @@ class UserController extends Controller
     public function create(Request $request){
 
         $reglas = [
-            'name' => 'required',
-            'profileImage' => 'required',
-            'token' => 'required',
-            'date' => 'required',
+            'password' => 'required',
+            'remember_token' => 'required',
             'mail' => 'required',
-            'phone' => 'required',
             'super_permission' => 'required'
         ];
+        
         $this->validate($request, $reglas);
 
+        $user = User::create($request->all());
         User::create($request->all());
-        
-        return $this->Respuesta('El usuario fue creado', 201);
+    
+        return $this->Respuesta($user, 201);
     }
 
     public function update(Request $request, $id){
@@ -49,11 +48,11 @@ class UserController extends Controller
 
             $reglas = [
                 'name' => 'required',
-                'profileImage' => 'required',
+                // 'profileImage' => 'required',
                 // 'token' => 'required',
-                'date' => 'required',
+                // 'date' => 'required',
                 'mail' => 'required',
-                'phone' => 'required',
+                // 'phone' => 'required',
                 'super_permission' => 'required'
             ];
                 

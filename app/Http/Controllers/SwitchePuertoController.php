@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Switche;
 use App\Puerto;
-
 use Illuminate\Http\Request;
 
 class SwitchePuertoController extends Controller
@@ -21,40 +20,24 @@ class SwitchePuertoController extends Controller
         }
         return $this->RespuestaError("EL switche $id no existe",404);
     }
-    
+
     public function create($puerto_id , $switche_id){
-            
-        //busco el id del sw
         $sw = Switche::Find($switche_id);
-        // compruebo si existe
         if ($sw) {
-            // si esxiste todo bien continuo
-            
-            // busco el id del usuario
             $p = Puerto::Find($puerto_id);
             if($p){
-
                 $puertos = $sw->puerto();
                 if ($puertos->find($puerto_id)) {
-                    # code...
                     return $this->Respuesta("EL puerto $puerto_id ya fue asignado al switche $switche_id",409);
                 }
-                // si esxiste todo bien continuo
-                // desde el Modelo Equipo que encontre busco la tabla pivote que me enlasa los equipos con los usuarios y los attachsco XD
                 $sw->puerto()->attach($puerto_id);
-                // todo bien sigo con mi vida y me como una arepa T.T
                 return $this->Respuesta("EL switche $switche_id fue asignado al puerto $puerto_id",201);
             }
-
-            // el usuario no existio 
             return $this->RespuestaError("EL puerto $puerto_id no existe",404);
-
         }
-        // el equipo no existio 
         return $this->RespuestaError("EL switche $switche_id no existe ", 404);
     }
 
-    
     public function update(Request $request, $switche_id , $puerto_id){
         $switche = Switche::Find($switche_id);
         if ($switche) {   
@@ -96,6 +79,5 @@ class SwitchePuertoController extends Controller
         // npi del equipo se escapo XD
         return $this->RespuestaError("No se encontror el switche",404);
     }
-
     
 }

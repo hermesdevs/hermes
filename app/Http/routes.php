@@ -78,15 +78,12 @@ $app->delete('/servidores/{id}', 'ServidorController@destroy');
 // Switche
 //===============================================
 
-// $app->group(['middleware' => 'cros'], function ($app) {
-	$app->get('/switches', 'SwitcheController@index');
-	$app->get('/switches/{id}', 'SwitcheController@show');
-	$app->post('/switches', 'SwitcheController@SwitcheControl');
-	$app->put('/switches/{id}', 'SwitcheController@alter');
-	$app->patch('/switches/{id}', 'SwitcheController@update');
-	$app->delete('/switches/{id}', 'SwitcheController@destroy');
-// });
-
+$app->get('/switches', 'SwitcheController@index');
+$app->get('/switches/{id}', 'SwitcheController@show');
+$app->post('/switches', 'SwitcheController@SwitcheControl');
+$app->put('/switches/{id}', 'SwitcheController@alter');
+$app->patch('/switches/{id}', 'SwitcheController@update');
+$app->delete('/switches/{id}', 'SwitcheController@destroy');
 
 
 //===============================================
