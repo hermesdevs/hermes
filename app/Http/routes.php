@@ -48,9 +48,10 @@ $app->get('/puertos/vlans', 'AllController@PuertosVlans');
 //===============================================
 // Auth
 //===============================================
-$app->get('/login', 'AuthController@index');
-$app->get('/register', 'AuthController@index');
-$app->get('/forget', 'AuthController@index');
+$app->get('/auth', 'AuthController@index');
+$app->post('/auth/login', 'AuthController@login');
+$app->post('/auth/register', 'AuthController@register');
+$app->post('/auth/forget', 'AuthController@forget');
 
 //===============================================
 // Equipos
@@ -277,11 +278,11 @@ $app->patch('/puertos/{puerto_id}/servidores/{servidor_id}', 'PuertoServidorCont
 $app->delete('/puertos/{puerto_id}/servidores/{servidor_id}', 'PuertoServidorController@destroy');
 
 //puertos - switches
-$app->get('/puertos/{puerto_id}/switches/', 'PuertosSwitchesController@index');
-$app->post('/puertos/{puerto_id}/switches/{switches_id}', 'PuertosSwitchesController@create');
-$app->put('/puertos/{puerto_id}/switches/{switches_id}', 'PuertosSwitchesController@update');
-$app->patch('/puertos/{puerto_id}/switches/{switches_id}', 'PuertosSwitchesController@update');
-$app->delete('/puertos/{puerto_id}/switches/{switches_id}', 'PuertosSwitchesController@destroy');
+$app->get('/puertos/{puerto_id}/switches/', 'PuertoSwitcheController@index');
+$app->post('/puertos/{puerto_id}/switches/{switches_id}', 'PuertoSwitcheController@create');
+$app->put('/puertos/{puerto_id}/switches/{switches_id}', 'PuertoSwitcheController@update');
+$app->patch('/puertos/{puerto_id}/switches/{switches_id}', 'PuertoSwitcheController@update');
+$app->delete('/puertos/{puerto_id}/switches/{switches_id}', 'PuertoSwitcheController@destroy');
 
 //puertos - vlans (No pos esta ya esta alla arriba en el controlador de los puertos)
 

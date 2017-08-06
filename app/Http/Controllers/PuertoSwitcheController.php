@@ -7,14 +7,17 @@ use Illuminate\Http\Request;
 
 class PuertoSwitcheController extends Controller{
 
-	public function index($id){
-    	$switche = Switche::find($id);
-    	if($switche){
-    		$puerto = $switche->puerto;
-    		return response()->json(['data'=>$puerto],200);
-    	}
-    	return "la cagaste nojoda";
-	}
+    public function index($id){
+        $puerto = Puerto::find($id);
+        if ($puerto) {
+            $switches = $puerto->switche;
+            if(count($switches)==0) {
+                return $this->RespuestaError("EL puerto $id no tiene switches asignados",404);
+            }
+            return $this->Respuesta($puerto, 200);
+        }
+        return $this->RespuestaError("El puerto $puerto_id no existe", 404);
+    }
 
     public function create($puerto_id , $switche_id){
         //busco el id del sw

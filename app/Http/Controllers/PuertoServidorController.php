@@ -8,12 +8,15 @@ use Illuminate\Http\Request;
 class PuertoServidorController extends Controller{
 
     public function index($id){
-        $servidor = Servidor::find($id);
-        if($servidor){
-            $puerto = $servidor->puerto;
+        $puerto = Puerto::find($id);
+        if ($puerto) {
+            $servidores = $puerto->servidor;
+            if(count($servidores)==0) {
+                return $this->RespuestaError("EL puerto $id no tiene servidores asignados",404);
+            }
             return $this->Respuesta($puerto, 200);
         }
-        return $this->RespuestaError("El servidor $id no existe", 404);
+        return $this->RespuestaError("El puerto $puerto_id no existe", 404);
     }
 
     public function create($puerto_id, $servidor_id){
