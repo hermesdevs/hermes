@@ -19,6 +19,10 @@ class Switche extends Model
 		return $this->belongsToMany('App\Equipo');
 	}
 
+	function servidor(){
+		return $this->belongsToMany('App\Servidor');
+	}
+
 	function puerto(){
 		return $this->belongsToMany('App\Puerto');
 	}

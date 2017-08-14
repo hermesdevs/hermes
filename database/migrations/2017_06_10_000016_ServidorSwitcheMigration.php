@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EquipoSwitcheMigration extends Migration
+class ServidorSwitcheMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class EquipoSwitcheMigration extends Migration
      */
     public function up()
     {
-        Schema::create('equipo_switche', function (Blueprint $table) {
+        Schema::create('servidor_switche', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('equipo_id')->unsigned();
+            $table->integer('servidor_id')->unsigned();
             $table->integer('switche_id')->unsigned();
-            $table->foreign('equipo_id')->references('id')->on('equipos');
+            $table->foreign('servidor_id')->references('id')->on('servidores');
             $table->foreign('switche_id')->references('id')->on('switches');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class EquipoSwitcheMigration extends Migration
      */
     public function down()
     {
-        Schema::drop('equipo_switche');
+        Schema::drop('servidor_switche');
     }
 }

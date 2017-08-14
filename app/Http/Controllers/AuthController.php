@@ -66,8 +66,9 @@ class AuthController extends Controller
 		// $u->super_permission = $request->get('super_permission');
 		// return $this->Respuesta($u, 201);
 
+        $userBack = User::create($request->all());
 		User::create($request->all());
-		return $this->Respuesta($request->all(), 201);
+		return $this->Respuesta($userBack, 201);
 
 	}
 	

@@ -12,12 +12,12 @@ class PuertoSwitcheMigration extends Migration
      */
     public function up()
     {
-        Schema::create('puerto_switch', function (Blueprint $table) {
+        Schema::create('puerto_switche', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('puerto_id')->unsigned();
-            $table->integer('switch_id')->unsigned();
+            $table->integer('switche_id')->unsigned();
             $table->foreign('puerto_id')->references('id')->on('puertos');
-            $table->foreign('switch_id')->references('id')->on('switches');
+            $table->foreign('switche_id')->references('id')->on('switches');
 
             $table->timestamps();
         });

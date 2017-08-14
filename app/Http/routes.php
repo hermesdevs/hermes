@@ -26,7 +26,7 @@ $app->get('/', function () use ($app) {
 //===============================================
 //===============================================
 
-$app->get('/equipos/puertos', 'AllController@EquiposPuertos');
+$app->get('/', 'AllController@EquiposPuertos');
 $app->get('/servidores/puertos', 'AllController@ServidoresPuertos');
 $app->get('/servidores/rangos', 'AllController@ServidoresRangos');
 $app->get('/switches/puertos', 'AllController@SwitchesPuertos');
@@ -81,8 +81,8 @@ $app->delete('/servidores/{id}', 'ServidorController@destroy');
 
 $app->get('/switches', 'SwitcheController@index');
 $app->get('/switches/{id}', 'SwitcheController@show');
-$app->post('/switches', 'SwitcheController@SwitcheControl');
-$app->put('/switches/{id}', 'SwitcheController@alter');
+$app->post('/switches', 'SwitcheController@create');
+$app->put('/switches/{id}', 'SwitcheController@update');
 $app->patch('/switches/{id}', 'SwitcheController@update');
 $app->delete('/switches/{id}', 'SwitcheController@destroy');
 
@@ -210,6 +210,13 @@ $app->post('/switches/{switche_id}/equipos/{equipo_id}', 'SwitcheEquipoControlle
 $app->put('/switches/{switche_id}/equipos/{equipo_id}', 'SwitcheEquipoController@update');
 $app->patch('/switches/{switche_id}/equipos/{equipo_id}', 'SwitcheEquipoController@update');
 $app->delete('/switches/{switche_id}/equipos/{equipo_id}', 'SwitcheEquipoController@destroy');
+
+// Swtiche Servidor
+$app->get('/switches/{switche_id}/servidores/', 'SwitcheServidorController@index');
+$app->post('/switches/{switche_id}/servidores/{servidor_id}', 'SwitcheServidorController@create');
+$app->put('/switches/{switche_id}/servidores/{servidor_id}', 'SwitcheServidorController@update');
+$app->patch('/switches/{switche_id}/servidores/{servidor_id}', 'SwitcheServidorController@update');
+$app->delete('/switches/{switche_id}/servidores/{servidor_id}', 'SwitcheServidorController@destroy');
 
 // Swtiche Rangos
 $app->get('/switches/{switche_id}/rangos/', 'SwitcheRangoController@index');

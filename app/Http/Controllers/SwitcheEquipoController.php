@@ -16,7 +16,7 @@ class SwitcheEquipoController extends Controller{
         return $this->RespuestaError("Este Switche no esta conectado a ningun equipo", 404);
     }
 
-    public function create($equipo_id ,$switche_id){
+    public function create($switche_id, $equipo_id){
             
         //busco el id del equipo
         $equipo = Equipo::Find($equipo_id);
@@ -31,13 +31,13 @@ class SwitcheEquipoController extends Controller{
                 $switches = $equipo->switche();
                 if ($switches->find($switche_id)) {
                     # code...
-                    return $this->Respuesta("EL Switche  $switche_id ya fue asignado al equipo $equipo_id",409);
+                    return $this->Respuesta("EL Switche $switche_id ya fue asignado al equipo $equipo_id",409);
                 }
                 // si esxiste todo bien continuo
                 // desde el Modelo Equipo que encontre busco la tabla pivote que me enlasa los equipos con los switche y los attachsco XD
                 $equipo->switche()->attach($switche_id);
                 // todo bien sigo con mi vida y me como una arepa T.T
-                return $this->Respuesta("EL equipo $equipo_id fue asignado al $switche_id",201);
+                return $this->Respuesta("EL equipo $equipo_id fue asignado al switche $switche_id",201);
             }
 
             // el switche no existio 
@@ -48,7 +48,8 @@ class SwitcheEquipoController extends Controller{
         return $this->RespuestaError("EL equipo $equipo_id no existe ", 404);
     }
     
-    public function update(Request $request, $equipo_id , $switche_id){
+
+    public function update(Request $request, $switche_id , $equipo_id ){
         $equipo = Equipo::Find($equipo_id);
         if ($equipo) {   
             $switche = Switche::Find($switche_id);
@@ -72,7 +73,7 @@ class SwitcheEquipoController extends Controller{
         return $this->RespuestaError("EL equipo $equipo_id no existe ", 404);
     }
 
-    public function destroy($equipo_id, $switche_id){
+    public function destroy($switche_id, $equipo_id){
         $e = Equipo::Find($equipo_id);
         if($e){
             $switches = $e->switche();

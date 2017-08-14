@@ -15,7 +15,7 @@ class PuertoEquipoController extends Controller
             if(count($equipos)==0) {
                 return $this->RespuestaError("EL puerto $id no tiene equipos asignados",404);
             }
-            return $this->Respuesta($puerto, 200);
+            return $this->Respuesta($equipos, 200);
         }
         return $this->RespuestaError("El puerto $puerto_id no existe", 404);
     }

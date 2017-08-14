@@ -31,7 +31,6 @@ class SwitcheController extends Controller
             'modelo'=> 'required',
             'so'=> 'required',
             'ip'=> 'required',
-            '_method'=> 'required',
         ];
     
         $this->validate($request, $reglas);

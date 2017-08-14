@@ -28,7 +28,7 @@ $factory->define(App\Equipo::class, function (Faker\Generator $faker){
 
 $factory->define(App\Puerto::class, function (Faker\Generator $faker) {
     return [
-        "name" => $faker->randomElement($array = array("a0/1","fa0/2","fa0/3","fa0/4","gi0/1"))
+        "name" => $faker->randomElement($array = array("Puerto"))
     ];
 });
 

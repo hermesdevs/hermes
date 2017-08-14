@@ -11,12 +11,15 @@ class EquipoPuertoController extends Controller
 {
 
     public function index($id){
-        $e = Equipo::Find($id);
-        if($e){
-            $r = $e->puerto;
-            return $this->Respuesta($r, 200);
+        $equipo = Equipo::Find($id);
+        if ($equipo){
+            $puertos = $equipo->puerto;
+            if(count($puertos)==0) {
+                return $this->RespuestaError("EL equipo $id no tiene puertos asignados",404);
+            }
+            return $this->Respuesta($equipo, 200);
         }
-        return $this->RespuestaError("El equipo $id no existe", 404);
+        return $this->RespuestaError("El puerto $id no existe", 404);
     }
 
 	public function create($equipo_id , $puerto_id){
